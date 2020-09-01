@@ -3,11 +3,12 @@
 {% set sha256 = "f6ce66d65163b827b29454fca9a7b33646d09ca724ad94774f7ef54eec055dc5" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://github.com/Synchrotron-Radiation-Workshop/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
