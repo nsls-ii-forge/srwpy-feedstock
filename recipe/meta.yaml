@@ -1,6 +1,8 @@
 {% set name = "srwpy" %}
 {% set version = "0.0.4" %}
-{% set sha256 = "f6ce66d65163b827b29454fca9a7b33646d09ca724ad94774f7ef54eec055dc5" %}
+# This is for PyPI sources:
+# {% set sha256 = "f6ce66d65163b827b29454fca9a7b33646d09ca724ad94774f7ef54eec055dc5" %}
+{% set sha256 = "0103123069a43798093556ddd346d6fe72d4c3164cd0078a19e908f3be3ccdee" %}
 
 package:
   name: {{ name|lower }}
