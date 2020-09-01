@@ -1,0 +1,42 @@
+{% set name = "srwpy" %}
+{% set version = "0.0.4" %}
+{% set sha256 = "f6ce66d65163b827b29454fca9a7b33646d09ca724ad94774f7ef54eec055dc5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - matplotlib
+    - numpy
+    - pillow
+    - scipy
+
+test:
+  imports:
+    - srwpy
+
+about:
+  home: https://github.com/Synchrotron-Radiation-Workshop/srwpy
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: UNOFFICIAL pip-installable SRW! Please refer to https://github.com/ochubar/SRW for official distribution.
+  doc_url: https://synchrotron-radiation-workshop.github.io/srwpy
+  dev_url: https://github.com/Synchrotron-Radiation-Workshop/srwpy
