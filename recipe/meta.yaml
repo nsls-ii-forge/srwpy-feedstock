@@ -32,6 +32,10 @@ requirements:
 test:
   imports:
     - srwpy
+    - srwpy.srwl_bl
+    - srwpy.srwlib
+    - srwpy.srwlpy  # shared-object-based Python binding
+    - srwpy.uti_math
 
 about:
   home: https://github.com/Synchrotron-Radiation-Workshop/srwpy
