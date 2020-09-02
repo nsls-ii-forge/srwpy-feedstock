@@ -1,24 +1,28 @@
 {% set name = "srwpy" %}
 {% set version = "0.0.4" %}
-{% set sha256 = "f6ce66d65163b827b29454fca9a7b33646d09ca724ad94774f7ef54eec055dc5" %}
+# This is for PyPI sources:
+# {% set sha256 = "f6ce66d65163b827b29454fca9a7b33646d09ca724ad94774f7ef54eec055dc5" %}
+{% set sha256 = "0103123069a43798093556ddd346d6fe72d4c3164cd0078a19e908f3be3ccdee" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://github.com/Synchrotron-Radiation-Workshop/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - compilers.patch
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - wget  # [not win]
   host:
     - python
     - pip
@@ -32,6 +36,10 @@ requirements:
 test:
   imports:
     - srwpy
+    - srwpy.srwl_bl
+    - srwpy.srwlib
+    - srwpy.srwlpy  # shared-object-based Python binding
+    - srwpy.uti_math
 
 about:
   home: https://github.com/Synchrotron-Radiation-Workshop/srwpy
